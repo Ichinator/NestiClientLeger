@@ -14,8 +14,6 @@
                 dataType: "json",
                 success: function(data){
 
-                    console.log(data);
-
                     // Nous vérifions si un utilisateur est trouvé, si ce n'est pas le cas la chaîne de caractères doit comporter 2 caractères
                     // qui sont [ et ]
                     if(data.length === 0){
@@ -25,18 +23,17 @@
 
                         alert("Bonjour : "+data[0]["prenom"]);
 
-                        var nom = localStorage.setItem("id", data[0]["id"])
+                        localStorage.setItem("id", data[0]["id"]);
+                        localStorage.setItem("prenom", data[0]["prenom"])
+
+                        window.location = "http://localhost:8000/";
                     }
 
                 }
             });
 
-            /*
-            Pour une redirection éventuelle
 
-            window.location = "http://localhost:8000/";
-            alert(window.location.toString())
-*/
+
         });
     });
 </script>
