@@ -11,14 +11,21 @@
                 url: "../Model/Users.php?",
 
                 data: {functionToCall : "connectUser", mail : mail, password : password},
+                dataType: "json",
                 success: function(data){
+
+                    console.log(data);
 
                     // Nous vérifions si un utilisateur est trouvé, si ce n'est pas le cas la chaîne de caractères doit comporter 2 caractères
                     // qui sont [ et ]
-                    if(data.length === 2){
-                        alert("Nous ne vous trouvons pas");
+                    if(data.length === 0){
+                        alert("Désolé nous ne vous trouvons pas dans notre base de donnée");
+
                     }else{
-                        alert("Success : "+data)
+
+                        alert("Bonjour : "+data[0]["prenom"]);
+
+                        var nom = localStorage.setItem("id", data[0]["id"])
                     }
 
                 }
