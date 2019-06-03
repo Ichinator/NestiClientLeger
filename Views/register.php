@@ -24,6 +24,8 @@
         <div class="form-group">
             <label for="textVille">Votre ville</label>
             <input type="text" id="textVille" class="form-control">
+            <select id="selectVille">
+            </select>
         </div>
 
         <div class="form-group">
