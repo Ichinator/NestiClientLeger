@@ -31,8 +31,8 @@
             "                    Mon compte\n" +
             "                </a>\n" +
             "                <div class=\"dropdown-menu\" aria-labelledby=\"navbarDropdown\">\n" +
-            "                    <a class=\"dropdown-item\" href=\"#\">"+localStorage.getItem("prenom")+"</a>\n" +
-            "                    <a class=\"dropdown-item\" href=\"#\" id=\"disconnectLink\">Se déconnecter</a>\n" +
+            "                    <a class=\"dropdown-item\" href=\"/personnalPage\">"+localStorage.getItem("prenom")+"</a>\n" +
+            "                    <a class=\"dropdown-item\" href=\"/disconnect\" id=\"disconnectLink\">Se déconnecter</a>\n" +
             "                </div>\n" +
             "            </li>";
         $(dynamicNavbar).insertBefore("#about");

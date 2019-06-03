@@ -34,6 +34,12 @@
                 case '/connect':
                     require_once 'Views/connect.php';
                     break;
+                case '/disconnect':
+                    require_once 'Views/disconnect.php';
+                    break;
+                case '/personnalPage':
+                    require_once 'Views/personnalPage.php';
+                    break;
                 default:
                     require_once 'Views/404.php';
                     break;
