@@ -6,9 +6,10 @@
             var password = $("#password").val();
 
             console.log("Voici un message");
+
             $.ajax({
                 type: 'POST',
-                url: "../Model/Users.php?",
+                url: "../Model/Users.php",
 
                 data: {functionToCall : "connectUser", mail : mail, password : password},
                 dataType: "json",

@@ -31,6 +31,9 @@
                 case '/about' :
                     require_once 'Views/about.php';
                     break;
+                case '/register':
+                    require_once 'Views/register.php';
+                    break;
                 case '/connect':
                     require_once 'Views/connect.php';
                     break;
@@ -53,6 +56,9 @@
         switch ($request){
             case '/connect':
                 require_once __DIR__."/Template/ConnectJS.tpl";
+                break;
+            case '/register':
+                require_once __DIR__."/Template/RegisterJS.tpl";
                 break;
         }
         ?>
