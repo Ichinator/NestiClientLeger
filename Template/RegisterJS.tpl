@@ -31,8 +31,26 @@
                     })
             }
         });
-    // Step 3) Vérifier au front que les mots de passes correspondent et que le mail est valide
+    // Step 3) Vérifier au front que les mots de passes correspondent
+        $("#registerButton").click(function () {
+            var mail = $("#email").val();
+            var password = $("#password").val();
+            var passwordConfirm = $("#passwordConfirm").val();
+            var dateNaissance = $("#datepicker").val();
+            var nom = $("#nom").val();
+            var prenom = $("#prenom").val();
+            var adresse = $("#adresse").val();
+            var ville = $("#selectVille").val();
 
-    // Step 4) Requête ajax pour créer l'utilisateur
+            $.ajax({
+                type: 'POST',
+                url: "../Model/Users.php",
+                datatype: "text",
+                data: {functionToCall : "registerUser", mail : mail, password : password, passwordConfirm : passwordConfirm, dateNaissance : dateNaissance, nom : nom, prenom : prenom, adresse : adresse, ville : ville},
+                success: function (data) {
+                    alert(data);
+                }
+            })
+        })
     } );
 </script>

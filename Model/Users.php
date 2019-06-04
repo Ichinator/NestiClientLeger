@@ -23,7 +23,7 @@
             // set the resulting array to associative
             $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         }catch (Exception $e){
-            die("Erreur dans la fonction de connection : ".$e->getMessage());
+            error_log("Erreur dans la fonction de connection : ".$e->getMessage());
         }
 
 
@@ -38,9 +38,48 @@
         echo json_encode($result);
     }
 
-    /*public function registerUser(){
+    // Création de nouveaux comptes
+    function registerUser($host, $util, $password, $bdd){
+        $nom = $_POST["nom"];
+        $prenom = $_POST["prenom"];
+        $adresse = $_POST["adresse"];
+        $ville = $_POST["ville"];
+        $mail = $_POST["mail"];
+        $dateNaissance = $_POST["dateNaissance"];
+        $passwordUser = $_POST["password"];
+        $passwordConfirm = $_POST["passwordConfirm"];
+        $ville = intval($ville);
 
-}*/
+        //Conversion de la date pour qu'elle soit au bon format
+        $dateNaissance = date("Y-m-d", strtotime($dateNaissance));
+
+        $result = null;
+
+            if($passwordUser !== $passwordConfirm){
+                $result = "Les mots de passes sont différents !";
+            }else{
+                if (filter_var($mail, FILTER_VALIDATE_EMAIL)) {
+                    try{
+                        $pdo_options[PDO::ATTR_ERRMODE] = PDO::ERRMODE_EXCEPTION;
+                        $bdd = new PDO('mysql:host='.$host.';dbname='.$bdd, $util, $password,$pdo_options);
+                        $queryInsert = 'INSERT INTO Utilisateurs (nom, prenom, ddn, adresse, Ville_idVille, mdp, mail, isClient) VALUES ("'.$nom.'","'.$prenom.'","'.$dateNaissance.'","'.$adresse.'",'.$ville.',"'.$passwordUser.'","'.$mail.'", 1)';
+                        error_log($queryInsert);
+                        $stmt = $bdd->prepare($queryInsert);
+
+                        $stmt->execute();
+
+                        $result = "Votre compte a bien été créé";
+                    }catch (Exception $e){
+                        error_log("Erreur dans la fonction d'enregistrement : ".$e->getMessage());
+                    }
+                }else{
+                    $result = "Mail invalide !";
+                }
+            }
+
+
+        echo $result;
+}
 
     function selectAllDatasFromUser ($id, $host, $util, $password, $bdd){
         $id;
@@ -50,15 +89,15 @@
 
             $pdo_options[PDO::ATTR_ERRMODE] = PDO::ERRMODE_EXCEPTION;
             $bdd = new PDO('mysql:host='.$host.';dbname='.$bdd, $util, $password,$pdo_options);
-            $stmt = $bdd->prepare('select * from Utilisateurs WHERE "'.$id.'" = id');
+            $stmt = $bdd->prepare();
             $stmt->execute();
 
             // set the resulting array to associative
             $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         }catch (Exception $e){
-            die("Erreur dans la fonction de connection : ".$e->getMessage());
+            error_log("Erreur : ".$e->getMessage());
         }
 
-        return $result;
+        echo json_encode($result);
     }
 ?>
