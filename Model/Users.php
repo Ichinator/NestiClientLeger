@@ -62,7 +62,7 @@
                     try{
                         $pdo_options[PDO::ATTR_ERRMODE] = PDO::ERRMODE_EXCEPTION;
                         $bdd = new PDO('mysql:host='.$host.';dbname='.$bdd, $util, $password,$pdo_options);
-                        $queryInsert = 'INSERT INTO Utilisateurs (nom, prenom, ddn, adresse, Ville_idVille, mdp, mail, isClient) VALUES ("'.$nom.'","'.$prenom.'","'.$dateNaissance.'","'.$adresse.'",'.$ville.',"'.$passwordUser.'","'.$mail.'", 1)';
+                        $queryInsert = 'INSERT INTO Utilisateurs (nom, prenom, ddn, adresse, Ville_idVille, mdp, mail, isClient) VALUES ('.$bdd->quote($nom).','.$bdd->quote($prenom).','.$bdd->quote($dateNaissance).','.$bdd->quote($adresse).','.$bdd->quote($ville).','.$bdd->quote($passwordUser).','.$bdd->quote($mail).', 1)';
                         error_log($queryInsert);
                         $stmt = $bdd->prepare($queryInsert);
 
@@ -71,6 +71,7 @@
                         $result = "Votre compte a bien été créé";
                     }catch (Exception $e){
                         error_log("Erreur dans la fonction d'enregistrement : ".$e->getMessage());
+                        $result = "Désolé nous n'avons pas pu créer votre compte. Soit votre mail est déjà utilisé, soit nous avons un problème en interne.";
                     }
                 }else{
                     $result = "Mail invalide !";
