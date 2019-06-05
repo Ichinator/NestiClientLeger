@@ -6,7 +6,12 @@
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
             <li class="nav-item" id="about">
-                <a class="nav-link" href="about">A propos</a>
+                <a class="nav-link" href="/ingredients">Nos ingrédients</a>
+            </li>
+        </ul>
+        <ul class="navbar-nav">
+            <li class="nav-item" id="about">
+                <a class="nav-link" href="/about">A propos</a>
             </li>
         </ul>
     </div>

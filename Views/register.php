@@ -1,5 +1,3 @@
-<?php
-?>
 
 <form>
         <div class="form-group">

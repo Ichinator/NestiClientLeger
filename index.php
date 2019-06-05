@@ -43,6 +43,9 @@
                 case '/personnalPage':
                     require_once 'Views/personnalPage.php';
                     break;
+                case '/ingredients':
+                    require_once 'Views/ingredients.php';
+                    break;
                 default:
                     require_once 'Views/404.php';
                     break;
@@ -53,12 +56,16 @@
 
         <?php
         require_once __DIR__."/Template/Javascripts.tpl";
+
         switch ($request){
             case '/connect':
                 require_once __DIR__."/Template/ConnectJS.tpl";
                 break;
             case '/register':
                 require_once __DIR__."/Template/RegisterJS.tpl";
+                break;
+            case '/ingredients':
+                require_once __DIR__."/Template/Ingredients.tpl";
                 break;
         }
         ?>
