@@ -11,7 +11,8 @@ foreach ($result as $row){
 }
 $categories = array_unique($categories);
 
-
+session_start();
+var_dump($_SESSION["panier"]);
 ?>
 
 <div class="row">
@@ -42,6 +43,7 @@ $categories = array_unique($categories);
 
         $chaineIngredients = "";
         foreach ($result as $row){
+            $modalId = "#modal".$row["nom"];
             $nomCat = $row["Categorie_Categorie"];
             $nomCat  = str_replace(' ', '_', $nomCat);
 
@@ -51,9 +53,10 @@ $categories = array_unique($categories);
   <div class=\"card-body\">
     <h4 class=\"card-title\">".$row["nom"]."</h4>
     <p class=\"card-text\">".$row["description"]."</p>
-    <button class=\"btn btn-primary\">Description</button>
-    <button class=\"btn btn-primary\">Commander</button>
-    <input type=\"text\" placeholder=\"Nombre de produits\">
+    
+    <button class=\"btn btn-primary\">Ajouter au panier</button>
+    <span>Prix : ".$row["prix"]." &euro;</span>
+    <input type=\"text\" placeholder=\"Nombre de ".$row["nom"]."\">
   </div>
 </div>
 </div>
