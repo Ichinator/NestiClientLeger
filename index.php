@@ -97,6 +97,9 @@
             case '/disconnect':
                 require_once __DIR__."/Template/DisconnectJS.tpl";
                 break;
+            case '/panier':
+                require_once __DIR__."Template/Stripe.tpl";
+                break;
         }
         ?>
 </html>
