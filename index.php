@@ -23,6 +23,23 @@
             <?php
             $request = $_SERVER['REQUEST_URI'];
 
+            //Pour protéger certaines pages
+            if (!isset($_SESSION["userSession"])){
+                switch ($request){
+                    case '/panier':
+                        $request = '/connect';
+                        break;
+                    case '/personnalPage':
+                        $request = '/connect';
+                        break;
+                    case '/ingredients':
+                        $request = '/connect';
+                        break;
+
+                }
+
+            }
+
             switch ($request) {
                 case '/' :
                     require_once 'Views/index.php';
@@ -47,19 +64,11 @@
                     break;
 
                 case '/ingredients':
-                    if(isset($_SESSION["userSession"])){
-                        require_once 'Views/ingredients.php';
-                    }else{
-                        require_once 'Views/connect.php';
-                    }
+                    require_once 'Views/ingredients.php';
 
                     break;
                 case '/panier':
-                    if(isset($_SESSION["userSession"])){
-                        require_once 'Views/panier.php';
-                    }else{
-                        require_once 'Views/connect.php';
-                    }
+                    require_once 'Views/panier.php';
 
                     break;
                 default:
@@ -81,13 +90,8 @@
                 require_once __DIR__."/Template/RegisterJS.tpl";
                 break;
             case '/ingredients':
-                if(isset($_SESSION["userSession"])){
 
                     require_once __DIR__."/Template/Ingredients.tpl";
-
-                }else{
-                    require_once __DIR__."/Template/ConnectJS.tpl";
-                }
 
                 break;
             case '/disconnect':
