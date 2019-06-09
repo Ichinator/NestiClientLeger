@@ -1,12 +1,11 @@
 <?php
 
 
-function getIngredientsJoinCategories($host, $util, $password, $bdd){
+function getIngredientsJoinCategories(){
     $result = null;
     try{
 
-        $pdo_options[PDO::ATTR_ERRMODE] = PDO::ERRMODE_EXCEPTION;
-        $bdd = new PDO('mysql:host='.$host.';dbname='.$bdd, $util, $password,$pdo_options);
+        $bdd = getPDO();
         $stmt = $bdd->prepare('SELECT * FROM Ingredients JOIN Categorie ON Categorie_Categorie = nomCategorie');
         $stmt->execute();
 

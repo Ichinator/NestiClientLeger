@@ -14,8 +14,7 @@ function ajouter(){
 
     // On vérifie si la session relative au panier existe ou non
     if(!isset($_SESSION["panier"])) {
-        $monPanier = [];
-        $_SESSION["panier"] = $monPanier;
+        $_SESSION["panier"];
     }
         // On récupère le contenu du panier actuel
         $monPanier = $_SESSION["panier"];

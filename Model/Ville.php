@@ -3,7 +3,7 @@ require_once "Connect.php";
 
 
 if(isset($_POST["functionToCall"])){
-    echo $_POST["functionToCall"]($host, $util, $password, $bdd);
+    echo $_POST["functionToCall"]();
 }
 
 
@@ -20,8 +20,7 @@ function selectVille($host, $util, $password, $bdd){
     $result = null;
     try{
 
-        $pdo_options[PDO::ATTR_ERRMODE] = PDO::ERRMODE_EXCEPTION;
-        $bdd = new PDO('mysql:host='.$host.';dbname='.$bdd, $util, $password,$pdo_options);
+        $bdd = getPDO();
         $stmt = $bdd->prepare('SELECT * FROM Ville WHERE ville LIKE "'.$partialString.'"');
         //$stmt = $bdd->prepare('select * from Utilisateurs WHERE "'.$mailUser.'" = mail AND "'.$passwordUser.'" = mdp');
         $stmt->execute();

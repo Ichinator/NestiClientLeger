@@ -10,9 +10,6 @@ foreach ($result as $row){
 
 }
 $categories = array_unique($categories);
-
-session_start();
-var_dump($_SESSION["panier"]);
 ?>
 
 <div class="row">

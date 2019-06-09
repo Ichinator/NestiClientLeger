@@ -32,6 +32,7 @@
             "                </a>\n" +
             "                <div class=\"dropdown-menu\" aria-labelledby=\"navbarDropdown\">\n" +
             "                    <a class=\"dropdown-item\" href=\"/personnalPage\">"+localStorage.getItem("prenom")+"</a>\n" +
+             "                   <a class=\"dropdown-item\" href=\"/panier\">Panier</a> \n"+
             "                    <a class=\"dropdown-item\" href=\"/disconnect\" id=\"disconnectLink\">Se déconnecter</a>\n" +
             "                </div>\n" +
             "            </li>";
@@ -43,10 +44,4 @@
         localStorage.clear();
         window.location = "http://localhost:8000/";
     }*/
-
-    //Permet de se déconnecter
-    $("#disconnectLink").click(function () {
-        localStorage.clear();
-        window.location = "http://localhost:8000/";
-    });
 </script>

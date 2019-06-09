@@ -11,6 +11,8 @@
 
         <?php
 
+        session_start();
+
         require_once __DIR__.'/Template/navbar.tpl';
 
         // https://www.pelock.com/products/hash-calculator
@@ -43,8 +45,22 @@
                 case '/personnalPage':
                     require_once 'Views/personnalPage.php';
                     break;
+
                 case '/ingredients':
-                    require_once 'Views/ingredients.php';
+                    if(isset($_SESSION["userSession"])){
+                        require_once 'Views/ingredients.php';
+                    }else{
+                        require_once 'Views/connect.php';
+                    }
+
+                    break;
+                case '/panier':
+                    if(isset($_SESSION["userSession"])){
+                        require_once 'Views/panier.php';
+                    }else{
+                        require_once 'Views/connect.php';
+                    }
+
                     break;
                 default:
                     require_once 'Views/404.php';
@@ -65,7 +81,17 @@
                 require_once __DIR__."/Template/RegisterJS.tpl";
                 break;
             case '/ingredients':
-                require_once __DIR__."/Template/Ingredients.tpl";
+                if(isset($_SESSION["userSession"])){
+
+                    require_once __DIR__."/Template/Ingredients.tpl";
+
+                }else{
+                    require_once __DIR__."/Template/ConnectJS.tpl";
+                }
+
+                break;
+            case '/disconnect':
+                require_once __DIR__."/Template/DisconnectJS.tpl";
                 break;
         }
         ?>

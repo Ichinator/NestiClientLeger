@@ -4,19 +4,18 @@
 
 
     if(isset($_POST["functionToCall"])){
-        echo $_POST["functionToCall"]($host, $util, $password, $bdd);
+        echo $_POST["functionToCall"]();
     }
 
 
-    function connectUser($host, $util, $password, $bdd){
+    function connectUser(){
         $mailUser = $_POST["mail"];
         $passwordUser = $_POST["password"];
 
         $result = null;
         try{
 
-            $pdo_options[PDO::ATTR_ERRMODE] = PDO::ERRMODE_EXCEPTION;
-            $bdd = new PDO('mysql:host='.$host.';dbname='.$bdd, $util, $password,$pdo_options);
+            $bdd = getPDO();
             $stmt = $bdd->prepare('select * from Utilisateurs WHERE "'.$mailUser.'" = mail AND "'.$passwordUser.'" = mdp');
             $stmt->execute();
 
@@ -39,7 +38,7 @@
     }
 
     // Création de nouveaux comptes
-    function registerUser($host, $util, $password, $bdd){
+    function registerUser(){
         $nom = $_POST["nom"];
         $prenom = $_POST["prenom"];
         $adresse = $_POST["adresse"];
@@ -60,8 +59,7 @@
             }else{
                 if (filter_var($mail, FILTER_VALIDATE_EMAIL)) {
                     try{
-                        $pdo_options[PDO::ATTR_ERRMODE] = PDO::ERRMODE_EXCEPTION;
-                        $bdd = new PDO('mysql:host='.$host.';dbname='.$bdd, $util, $password,$pdo_options);
+                        $bdd = getPDO();
                         $queryInsert = 'INSERT INTO Utilisateurs (nom, prenom, ddn, adresse, Ville_idVille, mdp, mail, isClient) VALUES ('.$bdd->quote($nom).','.$bdd->quote($prenom).','.$bdd->quote($dateNaissance).','.$bdd->quote($adresse).','.$bdd->quote($ville).','.$bdd->quote($passwordUser).','.$bdd->quote($mail).', 1)';
                         error_log($queryInsert);
                         $stmt = $bdd->prepare($queryInsert);
@@ -82,15 +80,14 @@
         echo $result;
 }
 
-    function selectAllDatasFromUser ($id, $host, $util, $password, $bdd){
+    function selectAllDatasFromUser ($id){
         $id;
 
         $result = null;
         try{
 
-            $pdo_options[PDO::ATTR_ERRMODE] = PDO::ERRMODE_EXCEPTION;
-            $bdd = new PDO('mysql:host='.$host.';dbname='.$bdd, $util, $password,$pdo_options);
-            $stmt = $bdd->prepare();
+            $bdd = getPDO();
+            $stmt = $bdd->prepare("SELECT * FROM Utilisateurs WHERE id = ".$id);
             $stmt->execute();
 
             // set the resulting array to associative
@@ -99,6 +96,6 @@
             error_log("Erreur : ".$e->getMessage());
         }
 
-        echo json_encode($result);
+        return $result;
     }
 ?>
