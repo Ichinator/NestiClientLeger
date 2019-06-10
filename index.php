@@ -5,6 +5,7 @@
     <?php
 
 
+
     require_once __dir__."/Template/Head.tpl";
     ?>
     <body>
@@ -13,6 +14,7 @@
 
         session_start();
 
+        var_dump($_SESSION);
         require_once __DIR__.'/Template/navbar.tpl';
 
         // https://www.pelock.com/products/hash-calculator
@@ -71,6 +73,9 @@
                     require_once 'Views/panier.php';
 
                     break;
+                case '/payment':
+                    require_once 'Views/payment.php';
+                    break;
                 default:
                     require_once 'Views/404.php';
                     break;
@@ -98,8 +103,10 @@
                 require_once __DIR__."/Template/DisconnectJS.tpl";
                 break;
             case '/panier':
-                require_once __DIR__."Template/Stripe.tpl";
+                require_once __DIR__."/Template/Stripe.tpl";
                 break;
         }
+
+
         ?>
 </html>

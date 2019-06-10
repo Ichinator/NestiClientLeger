@@ -19,27 +19,29 @@
         error_log("Prix selectionné : ".$prixSelectionne);
         $prix += $value * $prixSelectionne;
     }
+
+    $_SESSION["prix"] = $prix;
+
 ?>
 
 
-        <form method="post" id="paymentForm">
-            <div class="form-group" >
-                <label>Numéro de carte</label>
-                <input type="text" class="form-control" placeholder="Votre code de carte bleue" required>
+
+
+        <form action="/payment" method="post" id="payment-form">
+            <div class="form-row">
+                <label for="card-element">
+                    Credit or debit card
+                </label>
+                <div>
+                    <div style="width: 30em" id="card-element"></div>
+                </div>
+                <div>
+                    <!-- Used to display Element errors -->
+                    <span style="width: 30em; height: 2em; letter-spacing: 0em" id="card-errors" role="alert"></span>
+                </div>
             </div>
-            <div class="form-group">
-                <label>Mois de validité</label>
-                <input type="text" class="form-control" placeholder="Mois de validité" required>
-            </div>
-            <div class="form-group">
-                <label>Année de validité</label>
-                <input type="text" class="form-control" placeholder="Année de validité" required>
-            </div>
-            <div class="form-group">
-                <label>Cryptogramme</label>
-                <input type="text" class="form-control" placeholder="Cryptogramme" required>
-            </div>
-            <button type="submit" class="btn btn-primary" id="submitButton">Payer <?= $prix; ?> &euro;</button>
+
+            <button class="btn btn-primary">Payer <?= $prix ?> &euro;</button>
         </form>
 
     </div>

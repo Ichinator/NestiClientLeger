@@ -32,6 +32,7 @@
             session_start();
             /*session is started if you don't write this line can't use $_Session  global variable*/
             $_SESSION["userSession"]=$result[0]["id"];
+            $_SESSION["mail"]=$result[0]["mail"];
         }
 
         echo json_encode($result);
