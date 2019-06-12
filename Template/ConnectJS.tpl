@@ -1,11 +1,12 @@
 <script>
     $(function(){
+        /**
+         * Au click sur le bouton de connexion on récupère l'email et et le mot de passe que l'on envoie en ajax à la fonction de connexion
+         */
         $("#connectButton").click(function () {
 
             var mail = $("#email").val();
             var password = $("#password").val();
-
-            console.log("Voici un message");
 
             $.ajax({
                 type: 'POST',

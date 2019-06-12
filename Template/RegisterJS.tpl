@@ -1,12 +1,14 @@
 <script src="../Assets/jqueryUi/jquery-ui.js"></script>
 <script>
 
-    // Step 1) Créer le datePicker
+
     $( function() {
         $( "#datepicker" ).datepicker();
 
 
-    // Step 2) Requête ajax pour récupérer les villes en fonction d'une chaîne de caractère ( avec autocomplétion )
+        /**
+         * Requête ajax pour récupérer les villes qui correspondent à une chaîne de caractères
+         */
         $( "#textVille" ).keyup(function() {
             valeur = $("#textVille").val();
             if(valeur.length > 3){
@@ -31,7 +33,9 @@
                     })
             }
         });
-    // Step 3) Vérifier au front que les mots de passes correspondent
+        /**
+         * Requête ajax qui envoie les données de l'utilisateur à la fonction d'enregistrement
+         */
         $("#registerButton").click(function () {
             var mail = $("#email").val();
             var password = $("#password").val();

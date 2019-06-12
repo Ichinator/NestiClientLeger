@@ -2,6 +2,12 @@
 
 require_once "Connect.php";
 
+/**
+ * @param $ingredient
+ * @return array|null
+ *
+ * Sélectionne un prix en fonction d'un ingrédient
+ */
 
 function selectPrix($ingredient){
 

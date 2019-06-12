@@ -1,6 +1,10 @@
 <?php
 
-
+/**
+ * @return array|null
+ *
+ * Récupère tous les ingrédients ainsi que leur catégorie
+ */
 function getIngredientsJoinCategories(){
     $result = null;
     try{

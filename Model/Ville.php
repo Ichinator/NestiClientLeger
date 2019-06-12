@@ -8,12 +8,9 @@ if(isset($_POST["functionToCall"])){
 
 
 /**
- * @param $host
- * @param $util
- * @param $password
- * @param $bdd
+ * Recherche les villes qui contiennent une chaîne de caractères
  */
-function selectVille($host, $util, $password, $bdd){
+function selectVille(){
     $partialString = $_POST["partialString"];
     $partialString .= "%";
     error_log($partialString);
@@ -22,7 +19,6 @@ function selectVille($host, $util, $password, $bdd){
 
         $bdd = getPDO();
         $stmt = $bdd->prepare('SELECT * FROM Ville WHERE ville LIKE "'.$partialString.'"');
-        //$stmt = $bdd->prepare('select * from Utilisateurs WHERE "'.$mailUser.'" = mail AND "'.$passwordUser.'" = mdp');
         $stmt->execute();
 
         // set the resulting array to associative

@@ -4,10 +4,13 @@
 
 
     if(isset($_POST["functionToCall"])){
+        error_log($_POST["functionToCall"]);
         echo $_POST["functionToCall"]();
     }
 
-
+/**
+ * Vérifie si un utilisateur est présent en base de données et s'il a le bon mot de passe. Si c'est le cas, on ajoute ses informations en session.
+ */
     function connectUser(){
         $mailUser = $_POST["mail"];
         $passwordUser = $_POST["password"];
@@ -31,14 +34,16 @@
         if(!is_nan($result[0]["id"])){
             session_start();
             /*session is started if you don't write this line can't use $_Session  global variable*/
-            $_SESSION["userSession"]=$result[0]["id"];
+            $_SESSION["userSession"]=$result[0];
             $_SESSION["mail"]=$result[0]["mail"];
         }
 
         echo json_encode($result);
     }
 
-    // Création de nouveaux comptes
+/**
+ * Permet de créer de nouveaux comptes
+ */
     function registerUser(){
         $nom = $_POST["nom"];
         $prenom = $_POST["prenom"];
@@ -54,6 +59,8 @@
         $dateNaissance = date("Y-m-d", strtotime($dateNaissance));
 
         $result = null;
+
+        error_log($mail);
 
             if($passwordUser !== $passwordConfirm){
                 $result = "Les mots de passes sont différents !";
@@ -81,22 +88,40 @@
         echo $result;
 }
 
-    function selectAllDatasFromUser ($id){
-        $id;
+/**
+ * Mets à jour l'utilisateur
+ */
+function updateUser(){
+    $password = $_POST["password"];
 
-        $result = null;
+    session_start();
+
+
+    $result = null;
+
+    error_log($password);
+    error_log($_SESSION["userSession"]["mdp"]);
+
+    if($password == $_SESSION["userSession"]["mdp"]){
+        error_log("Dans le if");
         try{
-
             $bdd = getPDO();
-            $stmt = $bdd->prepare("SELECT * FROM Utilisateurs WHERE id = ".$id);
+            $queryUpdate = 'UPDATE Utilisateurs SET nom = '.$bdd->quote($_POST["nom"]).', prenom = '.$bdd->quote($_POST["prenom"]).', ddn = '.$bdd->quote(date("Y-m-d", strtotime($_POST["dateNaissance"]))).', adresse = '.$bdd->quote($_POST["adresse"]).', Ville_idVille = '.$_POST["ville"].', mail = '.$bdd->quote($_POST["mail"]).' WHERE id = '.$_SESSION["userSession"]["id"];
+            error_log($queryUpdate);
+            $stmt = $bdd->prepare($queryUpdate);
+
             $stmt->execute();
 
-            // set the resulting array to associative
-            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $result = "Votre compte a bien été modifié";
         }catch (Exception $e){
-            error_log("Erreur : ".$e->getMessage());
+            error_log("Erreur dans la fonction de mise à jour d'utilisateur : ".$e->getMessage());
+            $result = "Désolé nous n'avons pas pu modifié votre compte.";
         }
-
-        return $result;
+    }else{
+        error_log("Dans le else");
+        $result = "Mauvais mot de passe !";
     }
+
+    echo $result;
+}
 ?>

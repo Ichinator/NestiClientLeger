@@ -3,14 +3,13 @@
 
     console.log("Le script");
     try{
-        // Create a Stripe client.
+        // Création d'un client Stripe.
         var stripe = Stripe('pk_test_vx61qHe4VWW40GpoDpCTlHmz00CclJgFUQ');
 
-        // Create an instance of Elements.
+        // Création d'une instance d'elements.
         var elements = stripe.elements();
 
-        // Custom styling can be passed to options when creating an Element.
-        // (Note that this demo uses a wider set of styles than the guide below.)
+
         var style = {
             base: {
                 color: '#32325d',
@@ -27,13 +26,14 @@
             }
         };
 
-        // Create an instance of the card Element.
+        // Instanciation d'un card-element
         var card = elements.create('card', {style: style});
 
-        // Add an instance of the card Element into the `card-element` <div>.
+        // Ajoute l'instance du card element dans la <div> avec l'id 'card-element'.
+
         card.mount('#card-element');
 
-        // Handle real-time validation errors from the card Element.
+        // Crée un listener pour une validation en temps réels des données des champs
         card.addEventListener('change', function(event) {
             var displayError = document.getElementById('card-errors');
             if (event.error) {
@@ -43,7 +43,7 @@
             }
         });
 
-        // Handle form submission.
+        // Event listener qui concerne la soumission du formulaire
         var form = document.getElementById('payment-form');
         form.addEventListener('submit', function(event) {
 
@@ -53,20 +53,20 @@
                 console.log("Création du token");
                 if (result.error) {
                     console.log("Erreur dans la création du token");
-                    // Inform the user if there was an error.
+                    // Informe l'utilisateur s'il y a une erreur
                     var errorElement = document.getElementById('card-errors');
                     errorElement.textContent = result.error.message;
                 } else {
                     console.log("Réussite de la création du token");
-                    // Send the token to your server.
+                    // Envoie du token au serveur
                     stripeTokenHandler(result.token);
                 }
             });
         });
 
-        // Submit the form with the token ID.
+        // Soumission du formulaire avec l'id du token
         function stripeTokenHandler(token) {
-            // Insert the token ID into the form so it gets submitted to the server
+            // Insertion de l'id du token dans un champ caché pour qu'il soit envoyé au serveur
             var form = document.getElementById('payment-form');
             var hiddenInput = document.createElement('input');
             hiddenInput.setAttribute('type', 'hidden');

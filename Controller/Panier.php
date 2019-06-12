@@ -2,6 +2,9 @@
 
 echo $_POST["fonction"]();
 
+/**
+ * Ajoute des ingrédients au paniers
+ */
 function ajouter(){
     $nom = $_POST["nom"];
     $nombreProduits = $_POST["nombreProduits"];

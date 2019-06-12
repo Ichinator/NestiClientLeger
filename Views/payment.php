@@ -21,5 +21,3 @@ $charge = \Stripe\Charge::create(array(
     'source'=>$_POST["stripeToken"],
     'description'=>'client'
 ));
-
-var_dump($charge->values());

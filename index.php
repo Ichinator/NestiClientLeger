@@ -14,7 +14,8 @@
 
         session_start();
 
-        var_dump($_SESSION);
+        var_dump($_SESSION["userSession"]);
+
         require_once __DIR__.'/Template/navbar.tpl';
 
         // https://www.pelock.com/products/hash-calculator
@@ -35,6 +36,9 @@
                         $request = '/connect';
                         break;
                     case '/ingredients':
+                        $request = '/connect';
+                        break;
+                    case '/payment':
                         $request = '/connect';
                         break;
 
@@ -104,6 +108,9 @@
                 break;
             case '/panier':
                 require_once __DIR__."/Template/Stripe.tpl";
+                break;
+            case '/personnalPage':
+                require_once __DIR__."/Template/PersonnalPageJS.tpl";
                 break;
         }
 
