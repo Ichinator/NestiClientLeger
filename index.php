@@ -41,6 +41,9 @@
                     case '/payment':
                         $request = '/connect';
                         break;
+                    case '/commandes':
+                        $request = '/connect';
+                        break;
 
                 }
 
@@ -79,6 +82,9 @@
                     break;
                 case '/payment':
                     require_once 'Views/payment.php';
+                    break;
+                case '/commandes':
+                    require_once 'Views/commandes.php';
                     break;
                 default:
                     require_once 'Views/404.php';

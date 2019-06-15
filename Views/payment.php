@@ -24,3 +24,4 @@ $charge = \Stripe\Charge::create(array(
 ));
 
 commander();
+
