@@ -1,9 +1,8 @@
 <?php
-require_once __DIR__."/../Model/Connect.php";
 require_once __DIR__.'/../Model/Ingredients.php';
 
 $i = 0;
-$result = getIngredientsJoinCategories($host, $util, $password, $bdd);
+$result = getIngredientsJoinCategories();
 $categories = [];
 foreach ($result as $row){
     array_push($categories, $row["Categorie_Categorie"]);

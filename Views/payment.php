@@ -1,6 +1,7 @@
 <?php
 
 require_once __DIR__."/../vendor/autoload.php";
+require_once __DIR__."/../Model/Commandes.php";
 
 
 
@@ -21,3 +22,5 @@ $charge = \Stripe\Charge::create(array(
     'source'=>$_POST["stripeToken"],
     'description'=>'client'
 ));
+
+commander();

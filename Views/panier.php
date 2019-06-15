@@ -20,6 +20,7 @@
         $prix += $value * $prixSelectionne;
     }
 
+
     $_SESSION["prix"] = $prix;
 
 ?>

@@ -14,7 +14,7 @@
 
         session_start();
 
-        var_dump($_SESSION["userSession"]);
+        //var_dump($_SESSION["userSession"]);
 
         require_once __DIR__.'/Template/navbar.tpl';
 
