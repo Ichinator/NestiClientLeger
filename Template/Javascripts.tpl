@@ -32,11 +32,15 @@
             "                </a>\n" +
             "                <div class=\"dropdown-menu\" aria-labelledby=\"navbarDropdown\">\n" +
             "                    <a class=\"dropdown-item\" href=\"/personnalPage\">"+localStorage.getItem("prenom")+"</a>\n" +
+            "                    <a class=\"dropdown-item\" href=\"/changePassword\">Changer mot de passe</a> \n"+
              "                   <a class=\"dropdown-item\" href=\"/panier\">Panier</a> \n"+
             "                    <a class=\"dropdown-item\" href=\"/commandes\">Vos commandes</a> \n"+
             "                    <a class=\"dropdown-item\" href=\"/disconnect\" id=\"disconnectLink\">Se déconnecter</a>\n" +
             "                </div>\n" +
             "            </li>" +
+                "<li class=\"nav-item\" id=\"about\">\n" +
+            "                <a class=\"nav-link\" href=\"/ingredients\">Nos ingrédients</a>\n" +
+            "            </li>"+
             "            <li class=\"nav-item\">\n" +
             "                <a class=\"nav-link\" href=\"/cours\">Nos cours</a>\n" +
             "            </li>";

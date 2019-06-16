@@ -14,8 +14,6 @@
 
         session_start();
 
-        var_dump($_SESSION["userSession"]);
-
         require_once __DIR__.'/Template/navbar.tpl';
 
         // https://www.pelock.com/products/hash-calculator
@@ -45,6 +43,9 @@
                         $request = '/connect';
                         break;
                     case '/cours':
+                        $request = '/connect';
+                        break;
+                    case '/changePassword':
                         $request = '/connect';
                         break;
 
@@ -92,6 +93,9 @@
                 case '/cours':
                     require_once 'Views/cours.php';
                     break;
+                case '/changePassword':
+                    require_once 'Views/changePassword.php';
+                    break;
                 default:
                     require_once 'Views/404.php';
                     break;
@@ -126,6 +130,9 @@
                 break;
             case '/cours':
                 require_once __DIR__."/Template/CoursJS.tpl";
+                break;
+            case '/changePassword':
+                require_once __DIR__."/Template/ChangePassword.tpl";
                 break;
         }
 

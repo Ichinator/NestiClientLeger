@@ -124,4 +124,40 @@ function updateUser(){
 
     echo $result;
 }
+
+function updatePassword(){
+    error_log("update");
+    $password = $_POST["password"];
+    $passwordNew = $_POST["passwordNew"];
+    $passwordNewConfirm = $_POST["passwordNewConfirm"];
+
+    session_start();
+
+
+    $result = null;
+
+    if($password == $_SESSION["userSession"]["mdp"]){
+        if($passwordNew === $passwordNewConfirm){
+            try{
+                $bdd = getPDO();
+                $queryUpdate = 'UPDATE Utilisateurs SET mdp = '.$bdd->quote($_POST["passwordNew"]).' WHERE id = '.$_SESSION["userSession"]["id"];
+                error_log($queryUpdate);
+                $stmt = $bdd->prepare($queryUpdate);
+
+                $stmt->execute();
+
+                $result = "Votre compte a bien été modifié";
+            }catch (Exception $e){
+                error_log("Erreur dans la fonction de mise à jour du mot de passe utilisateur : ".$e->getMessage());
+                $result = "Désolé nous n'avons pas pu modifié votre compte.";
+            }
+        }else{
+            $result = "Mots de passe différents";
+        }
+    }else{
+        $result = "Mauvais mot de passe !";
+    }
+
+    echo $result;
+}
 ?>

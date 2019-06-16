@@ -2,8 +2,6 @@
  require_once __DIR__."/../Model/Cours.php";
 
  $cours = selectAllCours();
-
- var_dump($cours);
  ?>
 <table class="table">
     <thead>
