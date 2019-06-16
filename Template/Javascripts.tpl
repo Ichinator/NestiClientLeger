@@ -36,6 +36,9 @@
             "                    <a class=\"dropdown-item\" href=\"/commandes\">Vos commandes</a> \n"+
             "                    <a class=\"dropdown-item\" href=\"/disconnect\" id=\"disconnectLink\">Se déconnecter</a>\n" +
             "                </div>\n" +
+            "            </li>" +
+            "            <li class=\"nav-item\">\n" +
+            "                <a class=\"nav-link\" href=\"/cours\">Nos cours</a>\n" +
             "            </li>";
         $(dynamicNavbar).insertBefore("#about");
     }

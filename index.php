@@ -14,7 +14,7 @@
 
         session_start();
 
-        //var_dump($_SESSION["userSession"]);
+        var_dump($_SESSION["userSession"]);
 
         require_once __DIR__.'/Template/navbar.tpl';
 
@@ -42,6 +42,9 @@
                         $request = '/connect';
                         break;
                     case '/commandes':
+                        $request = '/connect';
+                        break;
+                    case '/cours':
                         $request = '/connect';
                         break;
 
@@ -86,6 +89,9 @@
                 case '/commandes':
                     require_once 'Views/commandes.php';
                     break;
+                case '/cours':
+                    require_once 'Views/cours.php';
+                    break;
                 default:
                     require_once 'Views/404.php';
                     break;
@@ -117,6 +123,9 @@
                 break;
             case '/personnalPage':
                 require_once __DIR__."/Template/PersonnalPageJS.tpl";
+                break;
+            case '/cours':
+                require_once __DIR__."/Template/CoursJS.tpl";
                 break;
         }
 
